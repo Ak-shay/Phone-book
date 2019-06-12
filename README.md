@@ -18,6 +18,7 @@
     python manage.py makemigrations
     python manage.py migrate
     ```
-5. Setup environment variables.
-6. Start the application.
+5. Start the application.
     ```bash
+    python manage.py runserver
+    ```
