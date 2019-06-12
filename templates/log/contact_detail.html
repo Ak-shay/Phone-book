@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container text-left">
+	<h4>NAME: {{ contact.name }}</h4>
+	<h4>PHONE NO. : {{ contact.phone }}  ({{ contact.category }})</h4>
+	<h4>EMAIL: {{ contact.email }}</h4>
+	<h4>ADDRESS: {{ contact.address }}</h4>
+	<form method="POST">
+		{% csrf_token %}
+	<div class="form-inline row">
+		<div class="col-sm-4">
+		<button type="submit" name="delete" value="done" class="btn btn-primary">DELETE</button>
+		</div>
+		<div class="col-sm-4">
+		<button type="submit" name="call" value="done" class="btn btn-primary">CALL</button>
+		</div>
+		<div class="col-sm-4">
+		<a href="{% url 'log:edit_contact' pk=contact.pk %}" name="edit" value="done" class="btn btn-primary">EDIT</a>
+		</div>
+	</div>
+	</form>
+</div>
+
+{% endblock %}

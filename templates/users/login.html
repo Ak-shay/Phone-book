@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Login</h2>
+<form method="post">
+  {% csrf_token %}
+  <label for="phone">Phone No.:</label>
+  <input type="text" name="phone">
+  <label for="password">Password:</label>
+  <input type="password" name="password">
+  <button type="submit">Login</button>
+</form>
+{% endblock %}

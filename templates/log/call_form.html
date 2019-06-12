@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<form method="POST">
+	{% csrf_token %}
+	{% for field in form %}
+
+    <div class="form-group">
+        {{ field.label_tag }}
+ 		{{ field }}
+        {{ field.errors }}
+
+        {% if field.help_text %}
+        <span class="help">{{ field.help_text|safe }}</span>
+        {% endif %}
+    </div>
+
+	{% endfor %}
+    <div class="row">
+    <div class="col-sm-11">
+    <button type="submit" class="btn btn-primary" name="call" value="done">CALL</button>
+    </div>
+    <div>
+    <button type="submit" class="btn btn-primary" name="save" value="done">Save</button>
+    </div>
+    </div>
+
+</form>
+
+
+{% endblock %}

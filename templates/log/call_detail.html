@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load log_tags %}
+{% block content %}
+
+<div class="container text-left">
+	{% if call.call_to == request.user.phone %}
+	<h4>Call From: {% call_name call request.user %}</h4>
+	{% else %}
+	<h4>Call To: {% call_name call request.user %}</</h4>
+	{% endif %}
+	<h4>{{ call.made_on }}<h4>
+	<h4>Duration: {{ call.duration }}</h4>
+	<h4>Message: {{ call.msg }}</h4>
+	<form method="POST">
+		{% csrf_token %}
+		<button type="submit" name="delete" value="done" class="btn btn-primary">DELETE</button>
+	</div>
+	</form>
+</div>
+
+{% endblock %}

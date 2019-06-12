@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% if contacts.count > 0 %}
+
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Phone No.</th>
+      </tr>
+    </thead>
+    <tbody>
+
+    {% for contact in contacts %}
+
+    <tr>
+        <td><a href="{% url 'log:contact_detail' pk=contact.pk %}"><strong>{{ contact.username.capitalize }}</strong></a></td>
+        <td><a href="{% url 'log:contact_detail' pk=contact.pk %}"><strong>{{ contact.phone }}</strong></a></td>
+      </tr>
+
+    {% endfor %}
+
+    </tbody>
+  </table>
+</div>
+
+	{% else %}
+	<h3>NO CONTACTS</h3>
+{% endif %}
+
+{% endblock %}

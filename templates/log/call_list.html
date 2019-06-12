@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load log_tags %}
+{% block content %}
+
+
+{% if logs.count <= 0 %}
+	<h3>NO CALL HISTORY</h3>
+{% else %}
+
+<div class="container text-center">
+
+	{% for call in logs %}
+	<div class="border-bottom border-dark blockquote">
+
+		{% if log == 'outgoing' %}
+			<h3><a href="{{ call.get_absolute_url }}">Call To:</a> {% call_name call request.user %}</h3>
+
+		{% elif log == 'incoming' %}
+			<h3><a href="{{ call.get_absolute_url }}">Call From:</a> {% call_name call request.user %}</</h3>
+
+		{% else %}
+			{% if call.call_to == request.user.phone %}
+			<h3><a href="{{ call.get_absolute_url }}">Call From:</a> {% call_name call request.user %}</</h3>
+			{% else %}
+			<h3><a href="{{ call.get_absolute_url }}">Call To:</a> {% call_name call request.user %}</</h3>
+			{% endif %}
+		{% endif %}
+
+		<h3>{{ call.made_on }}</h3>
+		{% if call.msg %}
+			<h3>Message: {{ call.msg }}</h3>
+		{% endif %}
+
+	</div>
+	{% endfor %}
+
+</div>
+{% endif %}
+
+{% endblock %}
