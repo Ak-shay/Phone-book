@@ -9,7 +9,7 @@ from django.contrib.auth import authenticate, login, logout
 
 class SignUp(generic.CreateView):
     form_class = CustomUserCreationForm
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('login')
     template_name = 'users/signup.html'
 
 def user_login(request):
@@ -23,7 +23,7 @@ def user_login(request):
         if user:
             if user.is_active:
                 login(request, user)
-                return HttpResponseRedirect(reverse('call_logs'))
+                return HttpResponseRedirect(reverse('log:make_call'))
             else:
                 return HttpResponse("your account is not active")
         else:
